@@ -161,6 +161,43 @@ declare_clamp(float, f)
 declare_clamp(double, d)
 #undef declare_clamp
 
+#define declare_degrees(type, t) \
+static inline type degrees_##t(type rad) { return rad * (type)180 / M_PI; } \
+static inline type##2 degrees_2##t(type##2 rad) { return rad * (type)180 / M_PI; } \
+static inline type##3 degrees_3##t(type##3 rad) { return rad * (type)180 / M_PI; } \
+static inline type##4 degrees_4##t(type##4 rad) { return rad * (type)180 / M_PI; }
+declare_degrees(float, f)
+declare_degrees(double, d)
+#undef declare_degrees
+
+#define declare_radians(type, t) \
+static inline type radians_##t(type deg) { return deg * M_PI / (type)180; } \
+static inline type##2 radians_2##t(type##2 deg) { return deg * M_PI / (type)180; } \
+static inline type##3 radians_3##t(type##3 deg) { return deg * M_PI / (type)180; } \
+static inline type##4 radians_4##t(type##4 deg) { return deg * M_PI / (type)180; }
+declare_radians(float, f)
+declare_radians(double, d)
+#undef declare_degrees
+
+#define declare_mix(type, t) \
+static inline type mix_##t(type a, type b, type t) { return a * ((type)1 - t) + b * t; } \
+static inline type##2 mix_2##t(type##2 a, type##2 b, type t) { return a * ((type)1 - t) + b * t; } \
+static inline type##3 mix_3##t(type##3 a, type##3 b, type t) { return a * ((type)1 - t) + b * t; } \
+static inline type##4 mix_4##t(type##4 a, type##4 b, type t) { return a * ((type)1 - t) + b * t; }
+declare_mix(float, f)
+declare_mix(double, d)
+#undef declare_mix
+
+#define STEP(edge, v) (v < edge ? 0 : 1)
+#define declare_step(type, t) \
+static inline type step_##t(type edge, type v) { return STEP(edge, v); } \
+static inline type##2 step_2##t(type##2 edge, type##2 v) { return (type##2){ STEP(edge.x, v.x), STEP(edge.y, v.y) }; } \
+static inline type##3 step_3##t(type##3 edge, type##3 v) { return (type##3){ STEP(edge.x, v.x), STEP(edge.y, v.y), STEP(edge.z, v.z) }; } \
+static inline type##4 step_4##t(type##4 edge, type##4 v) { return (type##4){ STEP(edge.x, v.x), STEP(edge.y, v.y), STEP(edge.z, v.z), STEP(edge.w, v.w) }; }
+declare_step(float, f)
+declare_step(double, d)
+#undef declare_step
+
 static inline float dot_2f(float2 a, float2 b) { return a.x * b.x + a.y * b.y; }
 static inline float dot_3f(float3 a, float3 b) { return a.x * b.x + a.y * b.y + a.z * b.y; }
 static inline float dot_4f(float4 a, float4 b) { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; }
