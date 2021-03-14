@@ -161,6 +161,24 @@ declare_clamp(float, f)
 declare_clamp(double, d)
 #undef declare_clamp
 
+#define SIGN(v) ((v) > 0 ? 1 : ((v) < 0 ? -1 : 0))
+#define declare_sign(type, t) \
+static inline type sign_##t(type v) { return SIGN(v); } \
+static inline type##2 sign_2##t(type##2 v) { return (type##2){ SIGN(v.x), SIGN(v.y) }; } \
+static inline type##3 sign_3##t(type##3 v) { return (type##3){ SIGN(v.x), SIGN(v.y), SIGN(v.z) }; } \
+static inline type##4 sign_4##t(type##4 v) { return (type##4){ SIGN(v.x), SIGN(v.y), SIGN(v.z), SIGN(v.w) }; }
+declare_sign(char, c)
+declare_sign(uchar, uc)
+declare_sign(short, s)
+declare_sign(ushort, us)
+declare_sign(int, i)
+declare_sign(uint, ui)
+declare_sign(long, l)
+declare_sign(ulong, ul)
+declare_sign(float, f)
+declare_sign(double, d)
+#undef declare_sign
+
 #define declare_degrees(type, t) \
 static inline type degrees_##t(type rad) { return rad * (type)180 / M_PI; } \
 static inline type##2 degrees_2##t(type##2 rad) { return rad * (type)180 / M_PI; } \
@@ -197,6 +215,15 @@ static inline type##4 step_4##t(type##4 edge, type##4 v) { return (type##4){ STE
 declare_step(float, f)
 declare_step(double, d)
 #undef declare_step
+
+#define declare_smoothstep(type, t) \
+static inline type smoothstep_##t(type edge0, type edge1, type v) { type a = clamp_##t((v - edge0) / (edge1 - edge0), (type)0, (type)1); return a * a * ((type)3 - (type)2 * a); } \
+static inline type##2 smoothstep_2##t(type##2 edge0, type##2 edge1, type##2 v) { type##2 a = clamp_2##t((v - edge0) / (edge1 - edge0), (type)0, (type)1); return a * a * ((type)3 - (type)2 * a); } \
+static inline type##3 smoothstep_3##t(type##3 edge0, type##3 edge1, type##3 v) { type##3 a = clamp_3##t((v - edge0) / (edge1 - edge0), (type)0, (type)1); return a * a * ((type)3 - (type)2 * a); } \
+static inline type##4 smoothstep_4##t(type##4 edge0, type##4 edge1, type##4 v) { type##4 a = clamp_4##t((v - edge0) / (edge1 - edge0), (type)0, (type)1); return a * a * ((type)3 - (type)2 * a); }
+declare_smoothstep(float, f)
+declare_smoothstep(double, d)
+#undef declare_smoothstep
 
 static inline float dot_2f(float2 a, float2 b) { return a.x * b.x + a.y * b.y; }
 static inline float dot_3f(float3 a, float3 b) { return a.x * b.x + a.y * b.y + a.z * b.y; }
