@@ -225,8 +225,318 @@ declare_smoothstep(float, f)
 declare_smoothstep(double, d)
 #undef declare_smoothstep
 
+static inline float acos_f(float x) { return acosf(x); }
+static inline double acos_d(double x) { return acos(x); }
+#define declare_acos(type, t) \
+static inline type##2 acos_2##t(type##2 v) { return (type##2){ acos_##t(v.x), acos_##t(v.y) }; } \
+static inline type##3 acos_3##t(type##3 v) { return (type##3){ acos_##t(v.x), acos_##t(v.y), acos_##t(v.z) }; } \
+static inline type##4 acos_4##t(type##4 v) { return (type##4){ acos_##t(v.x), acos_##t(v.y), acos_##t(v.z), acos_##t(v.w) }; }
+declare_acos(float, f)
+declare_acos(double, d)
+#undef declare_acos
+
+static inline float acosh_f(float x) { return acoshf(x); }
+static inline double acosh_d(double x) { return acosh(x); }
+#define declare_acosh(type, t) \
+static inline type##2 acosh_2##t(type##2 v) { return (type##2){ acosh_##t(v.x), acosh_##t(v.y) }; } \
+static inline type##3 acosh_3##t(type##3 v) { return (type##3){ acosh_##t(v.x), acosh_##t(v.y), acosh_##t(v.z) }; } \
+static inline type##4 acosh_4##t(type##4 v) { return (type##4){ acosh_##t(v.x), acosh_##t(v.y), acosh_##t(v.z), acosh_##t(v.w) }; }
+declare_acosh(float, f)
+declare_acosh(double, d)
+#undef declare_acosh
+
+static inline float asin_f(float x) { return asinf(x); }
+static inline double asin_d(double x) { return asin(x); }
+#define declare_asin(type, t) \
+static inline type##2 asin_2##t(type##2 v) { return (type##2){ asin_##t(v.x), asin_##t(v.y) }; } \
+static inline type##3 asin_3##t(type##3 v) { return (type##3){ asin_##t(v.x), asin_##t(v.y), asin_##t(v.z) }; } \
+static inline type##4 asin_4##t(type##4 v) { return (type##4){ asin_##t(v.x), asin_##t(v.y), asin_##t(v.z), asin_##t(v.w) }; }
+declare_asin(float, f)
+declare_asin(double, d)
+#undef declare_asin
+
+static inline float asinh_f(float x) { return asinhf(x); }
+static inline double asinh_d(double x) { return asinh(x); }
+#define declare_asinh(type, t) \
+static inline type##2 asinh_2##t(type##2 v) { return (type##2){ asinh_##t(v.x), asinh_##t(v.y) }; } \
+static inline type##3 asinh_3##t(type##3 v) { return (type##3){ asinh_##t(v.x), asinh_##t(v.y), asinh_##t(v.z) }; } \
+static inline type##4 asinh_4##t(type##4 v) { return (type##4){ asinh_##t(v.x), asinh_##t(v.y), asinh_##t(v.z), asinh_##t(v.w) }; }
+declare_asinh(float, f)
+declare_asinh(double, d)
+#undef declare_asinh
+
+static inline float atan_f(float x) { return atanf(x); }
+static inline double atan_d(double x) { return atan(x); }
+#define declare_atan(type, t) \
+static inline type##2 atan_2##t(type##2 v) { return (type##2){ atan_##t(v.x), atan_##t(v.y) }; } \
+static inline type##3 atan_3##t(type##3 v) { return (type##3){ atan_##t(v.x), atan_##t(v.y), atan_##t(v.z) }; } \
+static inline type##4 atan_4##t(type##4 v) { return (type##4){ atan_##t(v.x), atan_##t(v.y), atan_##t(v.z), atan_##t(v.w) }; }
+declare_atan(float, f)
+declare_atan(double, d)
+#undef declare_atan
+
+static inline float atan2_f(float x, float y) { return atan2f(x, y); }
+static inline double atan2_d(double x, double y) { return atan2(x, y); }
+#define declare_atan2(type, t) \
+static inline type##2 atan2_2##t(type##2 vx, type##2 vy) { return (type##2){ atan2_##t(vx.x, vy.x), atan2_##t(vx.y, vy.y) }; } \
+static inline type##3 atan2_3##t(type##3 vx, type##3 vy) { return (type##3){ atan2_##t(vx.x, vy.x), atan2_##t(vx.y, vy.y), atan2_##t(vx.z, vy.z) }; } \
+static inline type##4 atan2_4##t(type##4 vx, type##4 vy) { return (type##4){ atan2_##t(vx.x, vy.x), atan2_##t(vx.y, vy.y), atan2_##t(vx.z, vy.z), atan2_##t(vx.w, vy.w) }; }
+declare_atan2(float, f)
+declare_atan2(double, d)
+#undef declare_atan2
+
+static inline float atanh_f(float x) { return atanhf(x); }
+static inline double atanh_d(double x) { return atanh(x); }
+#define declare_atanh(type, t) \
+static inline type##2 atanh_2##t(type##2 v) { return (type##2){ atanh_##t(v.x), atanh_##t(v.y) }; } \
+static inline type##3 atanh_3##t(type##3 v) { return (type##3){ atanh_##t(v.x), atanh_##t(v.y), atanh_##t(v.z) }; } \
+static inline type##4 atanh_4##t(type##4 v) { return (type##4){ atanh_##t(v.x), atanh_##t(v.y), atanh_##t(v.z), atanh_##t(v.w) }; }
+declare_atanh(float, f)
+declare_atanh(double, d)
+#undef declare_atanh
+
+static inline float cbrt_f(float x) { return cbrtf(x); }
+static inline double cbrt_d(double x) { return cbrt(x); }
+#define declare_cbrt(type, t) \
+static inline type##2 cbrt_2##t(type##2 v) { return (type##2){ cbrt_##t(v.x), cbrt_##t(v.y) }; } \
+static inline type##3 cbrt_3##t(type##3 v) { return (type##3){ cbrt_##t(v.x), cbrt_##t(v.y), cbrt_##t(v.z) }; } \
+static inline type##4 cbrt_4##t(type##4 v) { return (type##4){ cbrt_##t(v.x), cbrt_##t(v.y), cbrt_##t(v.z), cbrt_##t(v.w) }; }
+declare_cbrt(float, f)
+declare_cbrt(double, d)
+#undef declare_cbrt
+
+static inline float ceil_f(float x) { return ceilf(x); }
+static inline double ceil_d(double x) { return ceil(x); }
+#define declare_ceil(type, t) \
+static inline type##2 ceil_2##t(type##2 v) { return (type##2){ ceil_##t(v.x), ceil_##t(v.y) }; } \
+static inline type##3 ceil_3##t(type##3 v) { return (type##3){ ceil_##t(v.x), ceil_##t(v.y), ceil_##t(v.z) }; } \
+static inline type##4 ceil_4##t(type##4 v) { return (type##4){ ceil_##t(v.x), ceil_##t(v.y), ceil_##t(v.z), ceil_##t(v.w) }; }
+declare_ceil(float, f)
+declare_ceil(double, d)
+#undef declare_ceil
+
+static inline float cos_f(float x) { return cosf(x); }
+static inline double cos_d(double x) { return cos(x); }
+#define declare_cos(type, t) \
+static inline type##2 cos_2##t(type##2 v) { return (type##2){ cos_##t(v.x), cos_##t(v.y) }; } \
+static inline type##3 cos_3##t(type##3 v) { return (type##3){ cos_##t(v.x), cos_##t(v.y), cos_##t(v.z) }; } \
+static inline type##4 cos_4##t(type##4 v) { return (type##4){ cos_##t(v.x), cos_##t(v.y), cos_##t(v.z), cos_##t(v.w) }; }
+declare_cos(float, f)
+declare_cos(double, d)
+#undef declare_cos
+
+static inline float cosh_f(float x) { return coshf(x); }
+static inline double cosh_d(double x) { return cosh(x); }
+#define declare_cosh(type, t) \
+static inline type##2 cosh_2##t(type##2 v) { return (type##2){ cosh_##t(v.x), cosh_##t(v.y) }; } \
+static inline type##3 cosh_3##t(type##3 v) { return (type##3){ cosh_##t(v.x), cosh_##t(v.y), cosh_##t(v.z) }; } \
+static inline type##4 cosh_4##t(type##4 v) { return (type##4){ cosh_##t(v.x), cosh_##t(v.y), cosh_##t(v.z), cosh_##t(v.w) }; }
+declare_cosh(float, f)
+declare_cosh(double, d)
+#undef declare_cosh
+
+static inline float erfc_f(float x) { return erfcf(x); }
+static inline double erfc_d(double x) { return erfc(x); }
+#define declare_erfc(type, t) \
+static inline type##2 erfc_2##t(type##2 v) { return (type##2){ erfc_##t(v.x), erfc_##t(v.y) }; } \
+static inline type##3 erfc_3##t(type##3 v) { return (type##3){ erfc_##t(v.x), erfc_##t(v.y), erfc_##t(v.z) }; } \
+static inline type##4 erfc_4##t(type##4 v) { return (type##4){ erfc_##t(v.x), erfc_##t(v.y), erfc_##t(v.z), erfc_##t(v.w) }; }
+declare_erfc(float, f)
+declare_erfc(double, d)
+#undef declare_erfc
+
+static inline float erf_f(float x) { return erff(x); }
+static inline double erf_d(double x) { return erf(x); }
+#define declare_erf(type, t) \
+static inline type##2 erf_2##t(type##2 v) { return (type##2){ erf_##t(v.x), erf_##t(v.y) }; } \
+static inline type##3 erf_3##t(type##3 v) { return (type##3){ erf_##t(v.x), erf_##t(v.y), erf_##t(v.z) }; } \
+static inline type##4 erf_4##t(type##4 v) { return (type##4){ erf_##t(v.x), erf_##t(v.y), erf_##t(v.z), erf_##t(v.w) }; }
+declare_erf(float, f)
+declare_erf(double, d)
+#undef declare_erf
+
+static inline float exp_f(float x) { return expf(x); }
+static inline double exp_d(double x) { return exp(x); }
+#define declare_exp(type, t) \
+static inline type##2 exp_2##t(type##2 v) { return (type##2){ exp_##t(v.x), exp_##t(v.y) }; } \
+static inline type##3 exp_3##t(type##3 v) { return (type##3){ exp_##t(v.x), exp_##t(v.y), exp_##t(v.z) }; } \
+static inline type##4 exp_4##t(type##4 v) { return (type##4){ exp_##t(v.x), exp_##t(v.y), exp_##t(v.z), exp_##t(v.w) }; }
+declare_exp(float, f)
+declare_exp(double, d)
+#undef declare_exp
+
+static inline float exp2_f(float x) { return exp2f(x); }
+static inline double exp2_d(double x) { return exp2(x); }
+#define declare_exp2(type, t) \
+static inline type##2 exp2_2##t(type##2 v) { return (type##2){ exp2_##t(v.x), exp2_##t(v.y) }; } \
+static inline type##3 exp2_3##t(type##3 v) { return (type##3){ exp2_##t(v.x), exp2_##t(v.y), exp2_##t(v.z) }; } \
+static inline type##4 exp2_4##t(type##4 v) { return (type##4){ exp2_##t(v.x), exp2_##t(v.y), exp2_##t(v.z), exp2_##t(v.w) }; }
+declare_exp2(float, f)
+declare_exp2(double, d)
+#undef declare_exp2
+
+static inline float expm1_f(float x) { return expm1f(x); }
+static inline double expm1_d(double x) { return expm1(x); }
+#define declare_expm1(type, t) \
+static inline type##2 expm1_2##t(type##2 v) { return (type##2){ expm1_##t(v.x), expm1_##t(v.y) }; } \
+static inline type##3 expm1_3##t(type##3 v) { return (type##3){ expm1_##t(v.x), expm1_##t(v.y), expm1_##t(v.z) }; } \
+static inline type##4 expm1_4##t(type##4 v) { return (type##4){ expm1_##t(v.x), expm1_##t(v.y), expm1_##t(v.z), expm1_##t(v.w) }; }
+declare_expm1(float, f)
+declare_expm1(double, d)
+#undef declare_expm1
+
+static inline float dim_f(float x, float y) { return fdimf(x, y); }
+static inline double dim_d(double x, double y) { return fdim(x, y); }
+#define declare_dim(type, t) \
+static inline type##2 dim_2##t(type##2 vx, type##2 vy) { return (type##2){ dim_##t(vx.x, vy.x), dim_##t(vx.y, vy.y) }; } \
+static inline type##3 dim_3##t(type##3 vx, type##3 vy) { return (type##3){ dim_##t(vx.x, vy.x), dim_##t(vx.y, vy.y), dim_##t(vx.z, vy.z) }; } \
+static inline type##4 dim_4##t(type##4 vx, type##4 vy) { return (type##4){ dim_##t(vx.x, vy.x), dim_##t(vx.y, vy.y), dim_##t(vx.z, vy.z), dim_##t(vx.w, vy.w) }; }
+declare_dim(float, f)
+declare_dim(double, d)
+#undef declare_dim
+
+static inline float floor_f(float x) { return floorf(x); }
+static inline double floor_d(double x) { return floor(x); }
+#define declare_floor(type, t) \
+static inline type##2 floor_2##t(type##2 v) { return (type##2){ floor_##t(v.x), floor_##t(v.y) }; } \
+static inline type##3 floor_3##t(type##3 v) { return (type##3){ floor_##t(v.x), floor_##t(v.y), floor_##t(v.z) }; } \
+static inline type##4 floor_4##t(type##4 v) { return (type##4){ floor_##t(v.x), floor_##t(v.y), floor_##t(v.z), floor_##t(v.w) }; }
+declare_floor(float, f)
+declare_floor(double, d)
+#undef declare_floor
+
+static inline float hypot_f(float x, float y) { return hypotf(x, y); }
+static inline double hypot_d(double x, double y) { return hypot(x, y); }
+#define declare_hypot(type, t) \
+static inline type##2 hypot_2##t(type##2 vx, type##2 vy) { return (type##2){ hypot_##t(vx.x, vy.x), hypot_##t(vx.y, vy.y) }; } \
+static inline type##3 hypot_3##t(type##3 vx, type##3 vy) { return (type##3){ hypot_##t(vx.x, vy.x), hypot_##t(vx.y, vy.y), hypot_##t(vx.z, vy.z) }; } \
+static inline type##4 hypot_4##t(type##4 vx, type##4 vy) { return (type##4){ hypot_##t(vx.x, vy.x), hypot_##t(vx.y, vy.y), hypot_##t(vx.z, vy.z), hypot_##t(vx.w, vy.w) }; }
+declare_hypot(float, f)
+declare_hypot(double, d)
+#undef declare_hypot
+
+static inline float lgamma_f(float x) { return lgammaf(x); }
+static inline double lgamma_d(double x) { return lgamma(x); }
+#define declare_lgamma(type, t) \
+static inline type##2 lgamma_2##t(type##2 v) { return (type##2){ lgamma_##t(v.x), lgamma_##t(v.y) }; } \
+static inline type##3 lgamma_3##t(type##3 v) { return (type##3){ lgamma_##t(v.x), lgamma_##t(v.y), lgamma_##t(v.z) }; } \
+static inline type##4 lgamma_4##t(type##4 v) { return (type##4){ lgamma_##t(v.x), lgamma_##t(v.y), lgamma_##t(v.z), lgamma_##t(v.w) }; }
+declare_lgamma(float, f)
+declare_lgamma(double, d)
+#undef declare_lgamma
+
+static inline float log_f(float x) { return logf(x); }
+static inline double log_d(double x) { return log(x); }
+#define declare_log(type, t) \
+static inline type##2 log_2##t(type##2 v) { return (type##2){ log_##t(v.x), log_##t(v.y) }; } \
+static inline type##3 log_3##t(type##3 v) { return (type##3){ log_##t(v.x), log_##t(v.y), log_##t(v.z) }; } \
+static inline type##4 log_4##t(type##4 v) { return (type##4){ log_##t(v.x), log_##t(v.y), log_##t(v.z), log_##t(v.w) }; }
+declare_log(float, f)
+declare_log(double, d)
+#undef declare_log
+
+static inline float log2_f(float x) { return log2f(x); }
+static inline double log2_d(double x) { return log2(x); }
+#define declare_log2(type, t) \
+static inline type##2 log2_2##t(type##2 v) { return (type##2){ log2_##t(v.x), log2_##t(v.y) }; } \
+static inline type##3 log2_3##t(type##3 v) { return (type##3){ log2_##t(v.x), log2_##t(v.y), log2_##t(v.z) }; } \
+static inline type##4 log2_4##t(type##4 v) { return (type##4){ log2_##t(v.x), log2_##t(v.y), log2_##t(v.z), log2_##t(v.w) }; }
+declare_log2(float, f)
+declare_log2(double, d)
+#undef declare_log2
+
+static inline float log10_f(float x) { return log10f(x); }
+static inline double log10_d(double x) { return log10(x); }
+#define declare_log10(type, t) \
+static inline type##2 log10_2##t(type##2 v) { return (type##2){ log10_##t(v.x), log10_##t(v.y) }; } \
+static inline type##3 log10_3##t(type##3 v) { return (type##3){ log10_##t(v.x), log10_##t(v.y), log10_##t(v.z) }; } \
+static inline type##4 log10_4##t(type##4 v) { return (type##4){ log10_##t(v.x), log10_##t(v.y), log10_##t(v.z), log10_##t(v.w) }; }
+declare_log10(float, f)
+declare_log10(double, d)
+#undef declare_log10
+
+static inline float log1p_f(float x) { return log1pf(x); }
+static inline double log1p_d(double x) { return log1p(x); }
+#define declare_log1p(type, t) \
+static inline type##2 log1p_2##t(type##2 v) { return (type##2){ log1p_##t(v.x), log1p_##t(v.y) }; } \
+static inline type##3 log1p_3##t(type##3 v) { return (type##3){ log1p_##t(v.x), log1p_##t(v.y), log1p_##t(v.z) }; } \
+static inline type##4 log1p_4##t(type##4 v) { return (type##4){ log1p_##t(v.x), log1p_##t(v.y), log1p_##t(v.z), log1p_##t(v.w) }; }
+declare_log1p(float, f)
+declare_log1p(double, d)
+#undef declare_log1p
+
+static inline float logb_f(float x) { return logbf(x); }
+static inline double logb_d(double x) { return logb(x); }
+#define declare_logb(type, t) \
+static inline type##2 logb_2##t(type##2 v) { return (type##2){ logb_##t(v.x), logb_##t(v.y) }; } \
+static inline type##3 logb_3##t(type##3 v) { return (type##3){ logb_##t(v.x), logb_##t(v.y), logb_##t(v.z) }; } \
+static inline type##4 logb_4##t(type##4 v) { return (type##4){ logb_##t(v.x), logb_##t(v.y), logb_##t(v.z), logb_##t(v.w) }; }
+declare_logb(float, f)
+declare_logb(double, d)
+#undef declare_logb
+
+static inline float mod_f(float x, float y) { return fmodf(x, y); }
+static inline double mod_d(double x, double y) { return fmod(x, y); }
+#define declare_mod(type, t) \
+static inline type##2 mod_2##t(type##2 vx, type##2 vy) { return (type##2){ mod_##t(vx.x, vy.x), mod_##t(vx.y, vy.y) }; } \
+static inline type##3 mod_3##t(type##3 vx, type##3 vy) { return (type##3){ mod_##t(vx.x, vy.x), mod_##t(vx.y, vy.y), mod_##t(vx.z, vy.z) }; } \
+static inline type##4 mod_4##t(type##4 vx, type##4 vy) { return (type##4){ mod_##t(vx.x, vy.x), mod_##t(vx.y, vy.y), mod_##t(vx.z, vy.z), mod_##t(vx.w, vy.w) }; }
+declare_mod(float, f)
+declare_mod(double, d)
+#undef declare_mod
+
+static inline float pow_f(float x, float y) { return powf(x, y); }
+static inline double pow_d(double x, float y) { return pow(x, y); }
+#define declare_pow(type, t) \
+static inline type##2 pow_2##t(type##2 v, type y) { return (type##2){ pow_##t(v.x, y), pow_##t(v.y, y) }; } \
+static inline type##3 pow_3##t(type##3 v, type y) { return (type##3){ pow_##t(v.x, y), pow_##t(v.y, y), pow_##t(v.z, y) }; } \
+static inline type##4 pow_4##t(type##4 v, type y) { return (type##4){ pow_##t(v.x, y), pow_##t(v.y, y), pow_##t(v.z, y), pow_##t(v.w, y) }; }
+declare_pow(float, f)
+declare_pow(double, d)
+#undef declare_pow
+
+static inline float remainder_f(float x, float y) { return remainderf(x, y); }
+static inline double remainder_d(double x, float y) { return remainder(x, y); }
+#define declare_remainder(type, t) \
+static inline type##2 remainder_2##t(type##2 v, type y) { return (type##2){ remainder_##t(v.x, y), remainder_##t(v.y, y) }; } \
+static inline type##3 remainder_3##t(type##3 v, type y) { return (type##3){ remainder_##t(v.x, y), remainder_##t(v.y, y), remainder_##t(v.z, y) }; } \
+static inline type##4 remainder_4##t(type##4 v, type y) { return (type##4){ remainder_##t(v.x, y), remainder_##t(v.y, y), remainder_##t(v.z, y), remainder_##t(v.w, y) }; }
+declare_remainder(float, f)
+declare_remainder(double, d)
+#undef declare_remainder
+
+static inline float round_f(float x) { return roundf(x); }
+static inline double round_d(double x) { return round(x); }
+#define declare_round(type, t) \
+static inline type##2 round_2##t(type##2 v) { return (type##2){ round_##t(v.x), round_##t(v.y) }; } \
+static inline type##3 round_3##t(type##3 v) { return (type##3){ round_##t(v.x), round_##t(v.y), round_##t(v.z) }; } \
+static inline type##4 round_4##t(type##4 v) { return (type##4){ round_##t(v.x), round_##t(v.y), round_##t(v.z), round_##t(v.w) }; }
+declare_round(float, f)
+declare_round(double, d)
+#undef declare_round
+
+static inline float sin_f(float x) { return sinf(x); }
+static inline double sin_d(double x) { return sin(x); }
+#define declare_sin(type, t) \
+static inline type##2 sin_2##t(type##2 v) { return (type##2){ sin_##t(v.x), sin_##t(v.y) }; } \
+static inline type##3 sin_3##t(type##3 v) { return (type##3){ sin_##t(v.x), sin_##t(v.y), sin_##t(v.z) }; } \
+static inline type##4 sin_4##t(type##4 v) { return (type##4){ sin_##t(v.x), sin_##t(v.y), sin_##t(v.z), sin_##t(v.w) }; }
+declare_sin(float, f)
+declare_sin(double, d)
+#undef declare_sin
+
+static inline float sinh_f(float x) { return sinhf(x); }
+static inline double sinh_d(double x) { return sinh(x); }
+#define declare_sinh(type, t) \
+static inline type##2 sinh_2##t(type##2 v) { return (type##2){ sinh_##t(v.x), sinh_##t(v.y) }; } \
+static inline type##3 sinh_3##t(type##3 v) { return (type##3){ sinh_##t(v.x), sinh_##t(v.y), sinh_##t(v.z) }; } \
+static inline type##4 sinh_4##t(type##4 v) { return (type##4){ sinh_##t(v.x), sinh_##t(v.y), sinh_##t(v.z), sinh_##t(v.w) }; }
+declare_sinh(float, f)
+declare_sinh(double, d)
+#undef declare_sinh
+
 static inline float sqrt_f(float x) { return sqrtf(x); }
-static inline double sqrt_d(float x) { return sqrt(x); }
+static inline double sqrt_d(double x) { return sqrt(x); }
 #define declare_sqrt(type, t) \
 static inline type##2 sqrt_2##t(type##2 v) { return (type##2){ sqrt_##t(v.x), sqrt_##t(v.y) }; } \
 static inline type##3 sqrt_3##t(type##3 v) { return (type##3){ sqrt_##t(v.x), sqrt_##t(v.y), sqrt_##t(v.z) }; } \
@@ -234,6 +544,46 @@ static inline type##4 sqrt_4##t(type##4 v) { return (type##4){ sqrt_##t(v.x), sq
 declare_sqrt(float, f)
 declare_sqrt(double, d)
 #undef declare_sqrt
+
+static inline float tan_f(float x) { return tanf(x); }
+static inline double tan_d(double x) { return tan(x); }
+#define declare_tan(type, t) \
+static inline type##2 tan_2##t(type##2 v) { return (type##2){ tan_##t(v.x), tan_##t(v.y) }; } \
+static inline type##3 tan_3##t(type##3 v) { return (type##3){ tan_##t(v.x), tan_##t(v.y), tan_##t(v.z) }; } \
+static inline type##4 tan_4##t(type##4 v) { return (type##4){ tan_##t(v.x), tan_##t(v.y), tan_##t(v.z), tan_##t(v.w) }; }
+declare_tan(float, f)
+declare_tan(double, d)
+#undef declare_tan
+
+static inline float tanh_f(float x) { return tanhf(x); }
+static inline double tanh_d(double x) { return tanh(x); }
+#define declare_tanh(type, t) \
+static inline type##2 tanh_2##t(type##2 v) { return (type##2){ tanh_##t(v.x), tanh_##t(v.y) }; } \
+static inline type##3 tanh_3##t(type##3 v) { return (type##3){ tanh_##t(v.x), tanh_##t(v.y), tanh_##t(v.z) }; } \
+static inline type##4 tanh_4##t(type##4 v) { return (type##4){ tanh_##t(v.x), tanh_##t(v.y), tanh_##t(v.z), tanh_##t(v.w) }; }
+declare_tanh(float, f)
+declare_tanh(double, d)
+#undef declare_tanh
+
+static inline float tgamma_f(float x) { return tgammaf(x); }
+static inline double tgamma_d(double x) { return tgamma(x); }
+#define declare_tgamma(type, t) \
+static inline type##2 tgamma_2##t(type##2 v) { return (type##2){ tgamma_##t(v.x), tgamma_##t(v.y) }; } \
+static inline type##3 tgamma_3##t(type##3 v) { return (type##3){ tgamma_##t(v.x), tgamma_##t(v.y), tgamma_##t(v.z) }; } \
+static inline type##4 tgamma_4##t(type##4 v) { return (type##4){ tgamma_##t(v.x), tgamma_##t(v.y), tgamma_##t(v.z), tgamma_##t(v.w) }; }
+declare_tgamma(float, f)
+declare_tgamma(double, d)
+#undef declare_tgamma
+
+static inline float trunc_f(float x) { return truncf(x); }
+static inline double trunc_d(double x) { return trunc(x); }
+#define declare_trunc(type, t) \
+static inline type##2 trunc_2##t(type##2 v) { return (type##2){ trunc_##t(v.x), trunc_##t(v.y) }; } \
+static inline type##3 trunc_3##t(type##3 v) { return (type##3){ trunc_##t(v.x), trunc_##t(v.y), trunc_##t(v.z) }; } \
+static inline type##4 trunc_4##t(type##4 v) { return (type##4){ trunc_##t(v.x), trunc_##t(v.y), trunc_##t(v.z), trunc_##t(v.w) }; }
+declare_trunc(float, f)
+declare_trunc(double, d)
+#undef declare_trunc
 
 #define declare_dot(type, t) \
 static inline type dot_2##t(type##2 a, type##2 b) { return a.x * b.x + a.y * b.y; } \
@@ -282,5 +632,3 @@ static inline type##4 normalize_4##t(type##4 v) { return v / length_4##t(v); }
 declare_normalize(float, f)
 declare_normalize(double, d)
 #undef declare_normalize
-
-static inline float3 mod_3f(float3 v, float m) { return (float3){ fmodf(v.x, m), fmodf(v.y, m), fmodf(v.z, m) };}
