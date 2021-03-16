@@ -478,9 +478,9 @@ declare_logb(double, d)
 static inline float mod_f(float x, float y) { return fmodf(x, y); }
 static inline double mod_d(double x, double y) { return fmod(x, y); }
 #define declare_mod(type, t) \
-static inline type##2 mod_2##t(type##2 vx, type##2 vy) { return (type##2){ mod_##t(vx.x, vy.x), mod_##t(vx.y, vy.y) }; } \
-static inline type##3 mod_3##t(type##3 vx, type##3 vy) { return (type##3){ mod_##t(vx.x, vy.x), mod_##t(vx.y, vy.y), mod_##t(vx.z, vy.z) }; } \
-static inline type##4 mod_4##t(type##4 vx, type##4 vy) { return (type##4){ mod_##t(vx.x, vy.x), mod_##t(vx.y, vy.y), mod_##t(vx.z, vy.z), mod_##t(vx.w, vy.w) }; }
+static inline type##2 mod_2##t(type##2 v, type y) { return (type##2){ mod_##t(v.x, y), mod_##t(v.y, y) }; } \
+static inline type##3 mod_3##t(type##3 v, type y) { return (type##3){ mod_##t(v.x, y), mod_##t(v.y, y), mod_##t(v.z, y) }; } \
+static inline type##4 mod_4##t(type##4 v, type y) { return (type##4){ mod_##t(v.x, y), mod_##t(v.y, y), mod_##t(v.z, y), mod_##t(v.w, y) }; }
 declare_mod(float, f)
 declare_mod(double, d)
 #undef declare_mod
