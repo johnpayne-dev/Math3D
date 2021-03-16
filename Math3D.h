@@ -225,25 +225,62 @@ declare_smoothstep(float, f)
 declare_smoothstep(double, d)
 #undef declare_smoothstep
 
-static inline float dot_2f(float2 a, float2 b) { return a.x * b.x + a.y * b.y; }
-static inline float dot_3f(float3 a, float3 b) { return a.x * b.x + a.y * b.y + a.z * b.y; }
-static inline float dot_4f(float4 a, float4 b) { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; }
-static inline double dot_2d(double2 a, double2 b) { return a.x * b.x + a.y * b.y; }
-static inline double dot_3d(double3 a, double3 b) { return a.x * b.x + a.y * b.y + a.z * b.y; }
-static inline double dot_4d(double4 a, double4 b) { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; }
+static inline float sqrt_f(float x) { return sqrtf(x); }
+static inline double sqrt_d(float x) { return sqrt(x); }
+#define declare_sqrt(type, t) \
+static inline type##2 sqrt_2##t(type##2 v) { return (type##2){ sqrt_##t(v.x), sqrt_##t(v.y) }; } \
+static inline type##3 sqrt_3##t(type##3 v) { return (type##3){ sqrt_##t(v.x), sqrt_##t(v.y), sqrt_##t(v.z) }; } \
+static inline type##4 sqrt_4##t(type##4 v) { return (type##4){ sqrt_##t(v.x), sqrt_##t(v.y), sqrt_##t(v.z), sqrt_##t(v.w) }; }
+declare_sqrt(float, f)
+declare_sqrt(double, d)
+#undef declare_sqrt
 
-static inline float length_2f(float2 v) { return sqrtf(v.x * v.x + v.y * v.y); }
-static inline float length_3f(float3 v) { return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z); }
-static inline float length_4f(float4 v) { return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w); }
-static inline double length_2d(double2 v) { return sqrt(v.x * v.x + v.y * v.y); }
-static inline double length_3d(double3 v) { return sqrt(v.x * v.x + v.y * v.y + v.z * v.z); }
-static inline double length_4d(double4 v) { return sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w); }
+#define declare_dot(type, t) \
+static inline type dot_2##t(type##2 a, type##2 b) { return a.x * b.x + a.y * b.y; } \
+static inline type dot_3##t(type##3 a, type##3 b) { return a.x * b.x + a.y * b.y + a.z * b.z; } \
+static inline type dot_4##t(type##4 a, type##4 b) { return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w; }
+declare_dot(float, f)
+declare_dot(double, d)
+#undef declare_dot
 
-static inline float2 normalize_2f(float2 v) { return v / length_2f(v); }
-static inline float3 normalize_3f(float3 v) { return v / length_3f(v); }
-static inline float4 normalize_4f(float4 v) { return v / length_4f(v); }
-static inline double2 normalize_2d(double2 v) { return v / length_2d(v); }
-static inline double3 normalize_3d(double3 v) { return v / length_3d(v); }
-static inline double4 normalize_4d(double4 v) { return v / length_4d(v); }
+#define declare_length(type, t) \
+static inline type length_2##t(type##2 v) { return sqrt_##t(dot_2##t(v, v)); } \
+static inline type length_3##t(type##3 v) { return sqrt_##t(dot_3##t(v, v)); } \
+static inline type length_4##t(type##4 v) { return sqrt_##t(dot_4##t(v, v)); }
+declare_length(float, f)
+declare_length(double, d)
+#undef declare_length
+
+#define declare_sqlength(type, t) \
+static inline type sqlength_2##t(type##2 v) { return dot_2##t(v, v); } \
+static inline type sqlength_3##t(type##3 v) { return dot_3##t(v, v); } \
+static inline type sqlength_4##t(type##4 v) { return dot_4##t(v, v); }
+declare_sqlength(float, f)
+declare_sqlength(double, d)
+#undef declare_sqlength
+
+#define declare_distance(type, t) \
+static inline type distance_2##t(type##2 a, type##2 b) { return length_2##t(b - a); } \
+static inline type distance_3##t(type##3 a, type##3 b) { return length_3##t(b - a); } \
+static inline type distance_4##t(type##4 a, type##4 b) { return length_4##t(b - a); }
+declare_distance(float, f)
+declare_distance(double, d)
+#undef declare_distance
+
+#define declare_sqdistance(type, t) \
+static inline type sqdistance_2##t(type##2 a, type##2 b) { return sqlength_2##t(b - a); } \
+static inline type sqdistance_3##t(type##3 a, type##3 b) { return sqlength_3##t(b - a); } \
+static inline type sqdistance_4##t(type##4 a, type##4 b) { return sqlength_4##t(b - a); }
+declare_sqdistance(float, f)
+declare_sqdistance(double, d)
+#undef declare_sqdistance
+
+#define declare_normalize(type, t) \
+static inline type##2 normalize_2##t(type##2 v) { return v / length_2##t(v); } \
+static inline type##3 normalize_3##t(type##3 v) { return v / length_3##t(v); } \
+static inline type##4 normalize_4##t(type##4 v) { return v / length_4##t(v); }
+declare_normalize(float, f)
+declare_normalize(double, d)
+#undef declare_normalize
 
 static inline float3 mod_3f(float3 v, float m) { return (float3){ fmodf(v.x, m), fmodf(v.y, m), fmodf(v.z, m) };}
