@@ -1,14 +1,11 @@
 #pragma once
 #include <math.h>
+#include <stdbool.h>
 
 typedef unsigned char uchar;
 typedef unsigned short ushort;
 typedef unsigned int uint;
 typedef unsigned long ulong;
-
-typedef _Bool bool;
-#define true 1
-#define false 0
 
 #define declare_vectors(type) \
 typedef type __attribute__((ext_vector_type(2))) type##2; \
